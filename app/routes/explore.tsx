@@ -1,5 +1,6 @@
 import type { V2_MetaFunction } from "@remix-run/node";
 import {Navbar} from "~/includes/Navbar";
+import Card from "~/component/Card";
 
 export const meta: V2_MetaFunction = () => {
     return [
@@ -15,8 +16,16 @@ export default function Index() {
                 <Navbar />
             </div>
 
-            <div className="m-2">
-
+            <div className="flex-col m-2 grid grid-cols-5 gap-5">
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+                <Card />
             </div>
         </div>
     );
