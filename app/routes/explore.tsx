@@ -9,7 +9,7 @@ export const meta: V2_MetaFunction = () => {
     ];
 };
 
-export default function Index() {
+export default function Explore() {
     return (
         <div style={{ lineHeight: "1.8" }}>
             <div>
