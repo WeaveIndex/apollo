@@ -1,4 +1,5 @@
-import type { V2_MetaFunction } from "@remix-run/node";
+import {V2_MetaFunction, json} from "@remix-run/node";
+import { useLoaderData } from "@remix-run/react";
 import {Navbar} from "~/includes/Navbar";
 import Card from "~/component/Card";
 
@@ -9,7 +10,14 @@ export const meta: V2_MetaFunction = () => {
     ];
 };
 
+export const loader = async () => {
+    const a = await fetch("https://cat-girl.tech/api/all").then((x) => x.json())
+
+    return a;
+};
+
 export default function Explore() {
+    const mods = useLoaderData<typeof loader>();
     return (
         <div style={{ lineHeight: "1.8" }}>
             <div>
@@ -23,15 +31,9 @@ export default function Explore() {
             </div>
 
             <div className="flex-col m-2 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-5">
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
+                {mods.map((x: any) => (
+                    <Card name={x.name} desc={x.description} dl={x.dl}/>
+                ))}
             </div>
         </div>
     );
